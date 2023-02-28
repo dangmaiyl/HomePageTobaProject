@@ -6,4 +6,5 @@ public class Constant {
     public static final String PASSWORD = "123123123a";
     public static final  String EMAIL_NOT_VALID ="dangmai19.dt";
     public static final  String PASSWORD_NOT_VALID ="123456789";
+    public static final  String EMAIL_NOT_REGISTER ="CHIVIET@GMAIL.COM";
 }

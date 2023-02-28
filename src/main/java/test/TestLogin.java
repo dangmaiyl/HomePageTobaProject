@@ -35,8 +35,9 @@ public class TestLogin extends BaseTest {
         loginPage.navigateToHomePage(Constant.URL);
         loginPage.inputEmail(Constant.EMAIL);
         loginPage.inputPassword(Constant.PASSWORD_NOT_VALID);
-        loginPage.clickLogInButton();
         loginPage.verifyValidatePasswordInValid("Mật Khẩu không hợp lệ");
+        loginPage.clickLogInButton();
+
     }
     //Bo trong email
     @Test

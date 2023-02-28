@@ -69,4 +69,8 @@ public class BasePage {
         locator = String.format(locator, (Object[]) values);
         return driver.findElement(By.xpath(String.format(locator)));
     }
+    public void getTextElementByXpath(WebElement e){
+        waitElementVisible(e);
+        e.getText();
+    }
 }

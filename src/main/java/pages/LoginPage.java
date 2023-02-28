@@ -2,7 +2,6 @@ package pages;
 
 import core.BasePage;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -84,11 +83,12 @@ public class LoginPage extends BasePage {
     }
 
     //Nhap sai dinh dang password
-    @FindBy(xpath = "//div[text()='Mật Khẩu không hợp lệ']")
+    @FindBy(xpath = "//div[contains(text(),'Mật Khẩu không hợp lệ')]")
     private WebElement validatePasswordInValid;
 
     public void verifyValidatePasswordInValid(String value){
-        Assert.assertEquals(validatePasswordInValid.getText(),value);
+        getExplicitWait().until(ExpectedConditions.visibilityOf(validatePasswordInValid));
+         Assert.assertEquals(validatePasswordInValid.getText(),value);
    }
     //Nhap sai tai khoan chua tao
     @FindBy(xpath = "//div[text()='Email không hợp lệ']")
