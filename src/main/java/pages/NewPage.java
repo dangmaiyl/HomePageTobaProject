@@ -2,11 +2,17 @@ package pages;
 
 import core.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.Properties;
 
 public class NewPage extends BasePage {
@@ -39,6 +45,11 @@ public class NewPage extends BasePage {
     public void verifyNew(String value){
         Assert.assertTrue(getDynamicLocator(String.format(listNew,value)).isDisplayed());
     }
+    @FindBy(xpath = "//input[@placeholder=\"Tiêu đề tin tức\"]")
+    private WebElement placeholderSearchBox;
+    public void validatePlaceholderSearchBox(){
+        Assert.assertTrue(placeholderSearchBox.isDisplayed());
+    }
     //Chuc nang search khi khong co data tim kiem
     @FindBy(xpath = "//div[contains(text(),'Không có dữ liệu')]")
     private WebElement validateSearchNoData;
@@ -46,14 +57,20 @@ public class NewPage extends BasePage {
         Assert.assertEquals(validateSearchNoData.getText(),value);
     }
     //Chuc nang tao Tin tuc
-    @FindBy(xpath = "//span[contains(text(),'Tạo sản phẩm')]")
+    @FindBy(xpath = " //button//span[contains(text(),'Tạo tin tức')]")
     private WebElement createNewButton;
     public void clickCreateNewButton(){
         clickElementByXpath(createNewButton);
     }
-    public void uploadPicture(String value){
-        driver.findElement(By.xpath("//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/span[1]/div[1]/div[1]/span[1]/img[1]")).sendKeys(System.getProperty("user.dir"));
 
+    @FindBy(id = "create-form_image")
+    private WebElement picture;
+    public void uploadPicture() {
+        senKeyElementById(picture,"C:\\Users\\ADMIN\\Pictures\\Timebucks\\emtuyt.jpg");
     }
+    @FindBy(xpath = "create-form_status")
+    private WebElement status;
+
+
 
 }
